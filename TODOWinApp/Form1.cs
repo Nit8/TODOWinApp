@@ -1,13 +1,16 @@
 ﻿using System;
 using System.Drawing;
+using System.Net.Http;
 using System.Windows.Forms;
 
 namespace TODOWinApp
 {
     public partial class Form1 : Form
     {
+        private const string versionUrl = "https://drive.google.com/uc?export=download&id=1e3frzVtaNFedqvNVRDnydvi5D9Q480k1";
         public Form1()
         {
+            CheckForUpdates();
             InitializeComponent();
         }
 
@@ -43,7 +46,7 @@ namespace TODOWinApp
 
         private void undoneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MarkTasks("(Undone)");
+            MarkTasks("");
         }
 
         private void MarkTasks(string status)
@@ -83,5 +86,47 @@ namespace TODOWinApp
                 listBoxTasks.SetSelected(i, true);
             }
         }
+        private async void CheckForUpdates()
+        {
+            try
+            {
+                using (HttpClient client = new HttpClient())
+                {
+                    string latestVersion = await client.GetStringAsync(versionUrl);
+                    string currentVersion = Application.ProductVersion;
+
+                    if (IsNewVersionAvailable(currentVersion, latestVersion))
+                    {
+                        DialogResult result = MessageBox.Show(
+                            "A new version is available. Do you want to download it?",
+                            "Update Available",
+                            MessageBoxButtons.YesNo,
+                            MessageBoxIcon.Information);
+
+                        if (result == DialogResult.Yes)
+                        {
+                            System.Diagnostics.Process.Start("https://github.com/Nit8/TODOWinApp"); // Replace with your download link
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Failed to check for updates. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool IsNewVersionAvailable(string currentVersion, string latestVersion)
+        {
+            // Remove extra whitespace and newline characters
+            latestVersion = latestVersion.Trim();
+
+            // Compare the versions
+            Version localVersion = new Version(currentVersion);
+            Version onlineVersion = new Version(latestVersion);
+
+            return onlineVersion > localVersion;
+        }
+
     }
 }
