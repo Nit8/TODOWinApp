@@ -26,50 +26,61 @@ namespace TODOWinApp
 
         private void buttonMarkAs_Click(object sender, EventArgs e)
         {
-            if (listBoxTasks.SelectedIndex != -1)
+            if (listBoxTasks.SelectedIndices.Count > 0)
             {
                 contextMenuMarkAs.Show(buttonMarkAs, new Point(0, buttonMarkAs.Height));
             }
             else
             {
-                MessageBox.Show("Please select a task to mark.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select at least one task to mark.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
         private void doneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MarkTask("(Done)");
+            MarkTasks("(Done)");
         }
 
         private void undoneToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MarkTask("(Undone)");
+            MarkTasks("(Undone)");
         }
 
-        private void MarkTask(string status)
+        private void MarkTasks(string status)
         {
-            if (listBoxTasks.SelectedIndex != -1)
+            ListBox.SelectedIndexCollection selectedIndices = listBoxTasks.SelectedIndices;
+            for (int i = selectedIndices.Count - 1; i >= 0; i--)
             {
-                int index = listBoxTasks.SelectedIndex;
-                string task = listBoxTasks.SelectedItem.ToString();
+                int index = selectedIndices[i];
+                string task = listBoxTasks.Items[index].ToString();
 
                 // Remove any existing status
                 task = task.Replace("(Done)", "").Replace("(Undone)", "").Trim();
 
-                listBoxTasks.Items.RemoveAt(index);
-                listBoxTasks.Items.Insert(index, $"{task} {status}");
+                listBoxTasks.Items[index] = $"{task} {status}";
             }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxTasks.SelectedIndex != -1)
+            if (listBoxTasks.SelectedIndices.Count > 0)
             {
-                listBoxTasks.Items.RemoveAt(listBoxTasks.SelectedIndex);
+                for (int i = listBoxTasks.SelectedIndices.Count - 1; i >= 0; i--)
+                {
+                    listBoxTasks.Items.RemoveAt(listBoxTasks.SelectedIndices[i]);
+                }
             }
             else
             {
-                MessageBox.Show("Please select a task to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select at least one task to delete.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void buttonSelectAll_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < listBoxTasks.Items.Count; i++)
+            {
+                listBoxTasks.SetSelected(i, true);
             }
         }
     }

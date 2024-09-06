@@ -40,6 +40,7 @@ namespace TODOWinApp
             contextMenuMarkAs = new ContextMenuStrip(components);
             doneToolStripMenuItem = new ToolStripMenuItem();
             undoneToolStripMenuItem = new ToolStripMenuItem();
+            buttonSelectAll = new Button();
             contextMenuMarkAs.SuspendLayout();
             SuspendLayout();
             // 
@@ -66,6 +67,7 @@ namespace TODOWinApp
             listBoxTasks.ItemHeight = 15;
             listBoxTasks.Location = new Point(12, 41);
             listBoxTasks.Name = "listBoxTasks";
+            listBoxTasks.SelectionMode = SelectionMode.MultiExtended;
             listBoxTasks.Size = new Size(280, 154);
             listBoxTasks.TabIndex = 2;
             // 
@@ -73,7 +75,7 @@ namespace TODOWinApp
             // 
             buttonMarkAs.Location = new Point(12, 201);
             buttonMarkAs.Name = "buttonMarkAs";
-            buttonMarkAs.Size = new Size(110, 23);
+            buttonMarkAs.Size = new Size(75, 23);
             buttonMarkAs.TabIndex = 3;
             buttonMarkAs.Text = "Mark as";
             buttonMarkAs.UseVisualStyleBackColor = true;
@@ -81,9 +83,9 @@ namespace TODOWinApp
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(182, 201);
+            buttonDelete.Location = new Point(217, 201);
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(110, 23);
+            buttonDelete.Size = new Size(75, 23);
             buttonDelete.TabIndex = 4;
             buttonDelete.Text = "Delete Task";
             buttonDelete.UseVisualStyleBackColor = true;
@@ -109,11 +111,22 @@ namespace TODOWinApp
             undoneToolStripMenuItem.Text = "Undone";
             undoneToolStripMenuItem.Click += undoneToolStripMenuItem_Click;
             // 
+            // buttonSelectAll
+            // 
+            buttonSelectAll.Location = new Point(93, 201);
+            buttonSelectAll.Name = "buttonSelectAll";
+            buttonSelectAll.Size = new Size(75, 23);
+            buttonSelectAll.TabIndex = 5;
+            buttonSelectAll.Text = "Select All";
+            buttonSelectAll.UseVisualStyleBackColor = true;
+            buttonSelectAll.Click += buttonSelectAll_Click;
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(304, 241);
+            Controls.Add(buttonSelectAll);
             Controls.Add(buttonDelete);
             Controls.Add(buttonMarkAs);
             Controls.Add(listBoxTasks);
@@ -136,6 +149,7 @@ namespace TODOWinApp
         private ContextMenuStrip contextMenuMarkAs;
         private ToolStripMenuItem doneToolStripMenuItem;
         private ToolStripMenuItem undoneToolStripMenuItem;
+        private Button buttonSelectAll;
     }
 }
 
