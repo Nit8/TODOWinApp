@@ -5,6 +5,8 @@ VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TODOWinApp", "TODOWinApp\TODOWinApp.csproj", "{664FA198-7502-4A0B-9EFB-79667CF6E8C8}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "TODOWinAppInstaller", "TODOWinAppInstaller\TODOWinAppInstaller.vdproj", "{C2E76EFC-D274-4602-9C0A-20400968F39C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,8 @@ Global
 		{664FA198-7502-4A0B-9EFB-79667CF6E8C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{664FA198-7502-4A0B-9EFB-79667CF6E8C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{664FA198-7502-4A0B-9EFB-79667CF6E8C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2E76EFC-D274-4602-9C0A-20400968F39C}.Debug|Any CPU.ActiveCfg = Debug
+		{C2E76EFC-D274-4602-9C0A-20400968F39C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
