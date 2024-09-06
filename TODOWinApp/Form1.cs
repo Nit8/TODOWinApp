@@ -86,6 +86,49 @@ namespace TODOWinApp
                 listBoxTasks.SetSelected(i, true);
             }
         }
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Code to create a new task or clear the current list
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Code to open a file dialog and load tasks
+        }
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open the SaveFileDialog to allow the user to choose where to save the file
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    // Create a StreamWriter to write to the selected file
+                    using (var writer = new System.IO.StreamWriter(saveFileDialog.FileName))
+                    {
+                        // Iterate through the items in the ListBox and write each item to the file
+                        foreach (var item in listBoxTasks.Items)
+                        {
+                            writer.WriteLine(item.ToString());
+                        }
+                    }
+
+                    // Notify the user that the file was saved successfully
+                    MessageBox.Show("TODO list saved successfully.", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (Exception ex)
+                {
+                    // Handle any exceptions that occur during the file write operation
+                    MessageBox.Show($"An error occurred while saving the TODO list: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
         private async void CheckForUpdates()
         {
             try

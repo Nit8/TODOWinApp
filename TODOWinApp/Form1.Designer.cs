@@ -1,14 +1,28 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace TODOWinApp
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private MenuStrip menuStrip;
+        private ToolStripMenuItem fileToolStripMenuItem;
+        private ToolStripMenuItem newToolStripMenuItem;
+        private ToolStripMenuItem openToolStripMenuItem;
+        private ToolStripMenuItem saveToolStripMenuItem;
+        private ToolStripMenuItem exitToolStripMenuItem;
+        private TextBox textBoxTask;
+        private Button buttonAdd;
+        private ListBox listBoxTasks;
+        private Button buttonMarkAs;
+        private Button buttonDelete;
+        private ContextMenuStrip contextMenuMarkAs;
+        private ToolStripMenuItem doneToolStripMenuItem;
+        private ToolStripMenuItem undoneToolStripMenuItem;
+        private Button buttonSelectAll;
+        private SaveFileDialog saveFileDialog;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -25,13 +39,15 @@ namespace TODOWinApp
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            menuStrip = new MenuStrip();
+            fileToolStripMenuItem = new ToolStripMenuItem();
+            newToolStripMenuItem = new ToolStripMenuItem();
+            openToolStripMenuItem = new ToolStripMenuItem();
+            saveToolStripMenuItem = new ToolStripMenuItem();
+            exitToolStripMenuItem = new ToolStripMenuItem();
             textBoxTask = new TextBox();
             buttonAdd = new Button();
             listBoxTasks = new ListBox();
@@ -41,99 +57,169 @@ namespace TODOWinApp
             doneToolStripMenuItem = new ToolStripMenuItem();
             undoneToolStripMenuItem = new ToolStripMenuItem();
             buttonSelectAll = new Button();
+            saveFileDialog = new SaveFileDialog();
+            menuStrip.SuspendLayout();
             contextMenuMarkAs.SuspendLayout();
             SuspendLayout();
+
+            // 
+            // menuStrip
+            // 
+            menuStrip.Items.AddRange(new ToolStripItem[] {
+                fileToolStripMenuItem
+            });
+            menuStrip.Location = new System.Drawing.Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new System.Drawing.Size(569, 28);
+            menuStrip.TabIndex = 0;
+            menuStrip.Text = "menuStrip";
+
+            // 
+            // fileToolStripMenuItem
+            // 
+            fileToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] {
+                newToolStripMenuItem,
+                openToolStripMenuItem,
+                saveToolStripMenuItem,
+                exitToolStripMenuItem
+            });
+            fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            fileToolStripMenuItem.Size = new System.Drawing.Size(44, 24);
+            fileToolStripMenuItem.Text = "File";
+
+            // 
+            // newToolStripMenuItem
+            // 
+            newToolStripMenuItem.Name = "newToolStripMenuItem";
+            newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            newToolStripMenuItem.Text = "New";
+            newToolStripMenuItem.Click += new EventHandler(newToolStripMenuItem_Click);
+
+            // 
+            // openToolStripMenuItem
+            // 
+            openToolStripMenuItem.Name = "openToolStripMenuItem";
+            openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            openToolStripMenuItem.Text = "Open";
+            openToolStripMenuItem.Click += new EventHandler(openToolStripMenuItem_Click);
+
+            // 
+            // saveToolStripMenuItem
+            // 
+            saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            saveToolStripMenuItem.Text = "Save";
+            saveToolStripMenuItem.Click += new EventHandler(saveToolStripMenuItem_Click);
+
+            // 
+            // exitToolStripMenuItem
+            // 
+            exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += new EventHandler(exitToolStripMenuItem_Click);
+
             // 
             // textBoxTask
             // 
-            textBoxTask.Location = new System.Drawing.Point(14, 28);
+            textBoxTask.Location = new System.Drawing.Point(14, 40);
             textBoxTask.Name = "textBoxTask";
             textBoxTask.Size = new System.Drawing.Size(431, 22);
-            textBoxTask.TabIndex = 0;
+            textBoxTask.TabIndex = 1;
+
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new System.Drawing.Point(471, 13);
+            buttonAdd.Location = new System.Drawing.Point(471, 35);
             buttonAdd.Name = "buttonAdd";
             buttonAdd.Size = new System.Drawing.Size(86, 25);
-            buttonAdd.TabIndex = 1;
+            buttonAdd.TabIndex = 2;
             buttonAdd.Text = "Add Task";
             buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += new System.EventHandler(buttonAdd_Click);  
-            // Event handler added
+            buttonAdd.Click += new EventHandler(buttonAdd_Click);
+
             // 
             // listBoxTasks
             // 
             listBoxTasks.FormattingEnabled = true;
             listBoxTasks.ItemHeight = 16;
-            listBoxTasks.Location = new System.Drawing.Point(14, 92);
+            listBoxTasks.Location = new System.Drawing.Point(14, 80);
             listBoxTasks.Name = "listBoxTasks";
-            listBoxTasks.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            listBoxTasks.SelectionMode = SelectionMode.MultiExtended;
             listBoxTasks.Size = new System.Drawing.Size(543, 292);
-            listBoxTasks.TabIndex = 2;
+            listBoxTasks.TabIndex = 3;
+
             // 
             // buttonMarkAs
             // 
             buttonMarkAs.Location = new System.Drawing.Point(14, 397);
             buttonMarkAs.Name = "buttonMarkAs";
             buttonMarkAs.Size = new System.Drawing.Size(86, 25);
-            buttonMarkAs.TabIndex = 3;
+            buttonMarkAs.TabIndex = 4;
             buttonMarkAs.Text = "Mark as";
             buttonMarkAs.UseVisualStyleBackColor = true;
-            buttonMarkAs.Click += new System.EventHandler(buttonMarkAs_Click);  
-            // Event handler added
+            buttonMarkAs.Click += new EventHandler(buttonMarkAs_Click);
+
             // 
             // buttonDelete
             // 
             buttonDelete.Location = new System.Drawing.Point(471, 397);
             buttonDelete.Name = "buttonDelete";
             buttonDelete.Size = new System.Drawing.Size(86, 25);
-            buttonDelete.TabIndex = 4;
+            buttonDelete.TabIndex = 5;
             buttonDelete.Text = "Delete Task";
             buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += new System.EventHandler(buttonDelete_Click);  
-            // Event handler added
+            buttonDelete.Click += new EventHandler(buttonDelete_Click);
+
             // 
             // contextMenuMarkAs
             // 
             contextMenuMarkAs.ImageScalingSize = new System.Drawing.Size(20, 20);
-            contextMenuMarkAs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-        doneToolStripMenuItem,
-        undoneToolStripMenuItem});
+            contextMenuMarkAs.Items.AddRange(new ToolStripItem[] {
+                doneToolStripMenuItem,
+                undoneToolStripMenuItem
+            });
             contextMenuMarkAs.Name = "contextMenuMarkAs";
             contextMenuMarkAs.Size = new System.Drawing.Size(131, 52);
+
             // 
             // doneToolStripMenuItem
             // 
             doneToolStripMenuItem.Name = "doneToolStripMenuItem";
             doneToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             doneToolStripMenuItem.Text = "Done";
-            doneToolStripMenuItem.Click += new System.EventHandler(doneToolStripMenuItem_Click);  
-            // Event handler added
+            doneToolStripMenuItem.Click += new EventHandler(doneToolStripMenuItem_Click);
+
             // 
             // undoneToolStripMenuItem
             // 
             undoneToolStripMenuItem.Name = "undoneToolStripMenuItem";
             undoneToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             undoneToolStripMenuItem.Text = "Undone";
-            undoneToolStripMenuItem.Click += new System.EventHandler(undoneToolStripMenuItem_Click);  
-            // Event handler added
+            undoneToolStripMenuItem.Click += new EventHandler(undoneToolStripMenuItem_Click);
+
             // 
             // buttonSelectAll
             // 
-            buttonSelectAll.Location = new System.Drawing.Point(471, 44);
+            buttonSelectAll.Location = new System.Drawing.Point(471, 65);
             buttonSelectAll.Name = "buttonSelectAll";
             buttonSelectAll.Size = new System.Drawing.Size(86, 25);
-            buttonSelectAll.TabIndex = 5;
+            buttonSelectAll.TabIndex = 6;
             buttonSelectAll.Text = "Select All";
             buttonSelectAll.UseVisualStyleBackColor = true;
-            buttonSelectAll.Click += new System.EventHandler(buttonSelectAll_Click);  
-            // Event handler added
+            buttonSelectAll.Click += new EventHandler(buttonSelectAll_Click);
+
+            // 
+            // saveFileDialog
+            // 
+            saveFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+            saveFileDialog.Title = "Save TODO List As";
+
             // 
             // Form1
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(569, 434);
             Controls.Add(buttonSelectAll);
             Controls.Add(buttonDelete);
@@ -141,25 +227,17 @@ namespace TODOWinApp
             Controls.Add(listBoxTasks);
             Controls.Add(buttonAdd);
             Controls.Add(textBoxTask);
+            Controls.Add(menuStrip);
+            MainMenuStrip = menuStrip;
             Name = "Form1";
             Text = "TODO App";
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
             contextMenuMarkAs.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
-
-        }
-
         #endregion
-
-        private TextBox textBoxTask;
-        private Button buttonAdd;
-        private ListBox listBoxTasks;
-        private Button buttonMarkAs;
-        private Button buttonDelete;
-        private ContextMenuStrip contextMenuMarkAs;
-        private ToolStripMenuItem doneToolStripMenuItem;
-        private ToolStripMenuItem undoneToolStripMenuItem;
-        private Button buttonSelectAll;
+        }
     }
 }
 
