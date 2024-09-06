@@ -46,86 +46,95 @@ namespace TODOWinApp
             // 
             // textBoxTask
             // 
-            textBoxTask.Location = new Point(12, 12);
+            textBoxTask.Location = new System.Drawing.Point(14, 28);
             textBoxTask.Name = "textBoxTask";
-            textBoxTask.Size = new Size(200, 23);
+            textBoxTask.Size = new System.Drawing.Size(431, 22);
             textBoxTask.TabIndex = 0;
             // 
             // buttonAdd
             // 
-            buttonAdd.Location = new Point(218, 11);
+            buttonAdd.Location = new System.Drawing.Point(471, 13);
             buttonAdd.Name = "buttonAdd";
-            buttonAdd.Size = new Size(75, 23);
+            buttonAdd.Size = new System.Drawing.Size(86, 25);
             buttonAdd.TabIndex = 1;
             buttonAdd.Text = "Add Task";
             buttonAdd.UseVisualStyleBackColor = true;
-            buttonAdd.Click += buttonAdd_Click;
+            buttonAdd.Click += new System.EventHandler(buttonAdd_Click);  
+            // Event handler added
             // 
             // listBoxTasks
             // 
             listBoxTasks.FormattingEnabled = true;
-            listBoxTasks.ItemHeight = 15;
-            listBoxTasks.Location = new Point(12, 41);
+            listBoxTasks.ItemHeight = 16;
+            listBoxTasks.Location = new System.Drawing.Point(14, 92);
             listBoxTasks.Name = "listBoxTasks";
-            listBoxTasks.SelectionMode = SelectionMode.MultiExtended;
-            listBoxTasks.Size = new Size(280, 154);
+            listBoxTasks.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            listBoxTasks.Size = new System.Drawing.Size(543, 292);
             listBoxTasks.TabIndex = 2;
             // 
             // buttonMarkAs
             // 
-            buttonMarkAs.Location = new Point(12, 201);
+            buttonMarkAs.Location = new System.Drawing.Point(14, 397);
             buttonMarkAs.Name = "buttonMarkAs";
-            buttonMarkAs.Size = new Size(75, 23);
+            buttonMarkAs.Size = new System.Drawing.Size(86, 25);
             buttonMarkAs.TabIndex = 3;
             buttonMarkAs.Text = "Mark as";
             buttonMarkAs.UseVisualStyleBackColor = true;
-            buttonMarkAs.Click += buttonMarkAs_Click;
+            buttonMarkAs.Click += new System.EventHandler(buttonMarkAs_Click);  
+            // Event handler added
             // 
             // buttonDelete
             // 
-            buttonDelete.Location = new Point(217, 201);
+            buttonDelete.Location = new System.Drawing.Point(471, 397);
             buttonDelete.Name = "buttonDelete";
-            buttonDelete.Size = new Size(75, 23);
+            buttonDelete.Size = new System.Drawing.Size(86, 25);
             buttonDelete.TabIndex = 4;
             buttonDelete.Text = "Delete Task";
             buttonDelete.UseVisualStyleBackColor = true;
-            buttonDelete.Click += buttonDelete_Click;
+            buttonDelete.Click += new System.EventHandler(buttonDelete_Click);  
+            // Event handler added
             // 
             // contextMenuMarkAs
             // 
-            contextMenuMarkAs.Items.AddRange(new ToolStripItem[] { doneToolStripMenuItem, undoneToolStripMenuItem });
+            contextMenuMarkAs.ImageScalingSize = new System.Drawing.Size(20, 20);
+            contextMenuMarkAs.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+        doneToolStripMenuItem,
+        undoneToolStripMenuItem});
             contextMenuMarkAs.Name = "contextMenuMarkAs";
-            contextMenuMarkAs.Size = new Size(117, 48);
+            contextMenuMarkAs.Size = new System.Drawing.Size(131, 52);
             // 
             // doneToolStripMenuItem
             // 
             doneToolStripMenuItem.Name = "doneToolStripMenuItem";
-            doneToolStripMenuItem.Size = new Size(116, 22);
+            doneToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             doneToolStripMenuItem.Text = "Done";
-            doneToolStripMenuItem.Click += doneToolStripMenuItem_Click;
+            doneToolStripMenuItem.Click += new System.EventHandler(doneToolStripMenuItem_Click);  
+            // Event handler added
             // 
             // undoneToolStripMenuItem
             // 
             undoneToolStripMenuItem.Name = "undoneToolStripMenuItem";
-            undoneToolStripMenuItem.Size = new Size(116, 22);
+            undoneToolStripMenuItem.Size = new System.Drawing.Size(130, 24);
             undoneToolStripMenuItem.Text = "Undone";
-            undoneToolStripMenuItem.Click += undoneToolStripMenuItem_Click;
+            undoneToolStripMenuItem.Click += new System.EventHandler(undoneToolStripMenuItem_Click);  
+            // Event handler added
             // 
             // buttonSelectAll
             // 
-            buttonSelectAll.Location = new Point(93, 201);
+            buttonSelectAll.Location = new System.Drawing.Point(471, 44);
             buttonSelectAll.Name = "buttonSelectAll";
-            buttonSelectAll.Size = new Size(75, 23);
+            buttonSelectAll.Size = new System.Drawing.Size(86, 25);
             buttonSelectAll.TabIndex = 5;
             buttonSelectAll.Text = "Select All";
             buttonSelectAll.UseVisualStyleBackColor = true;
-            buttonSelectAll.Click += buttonSelectAll_Click;
+            buttonSelectAll.Click += new System.EventHandler(buttonSelectAll_Click);  
+            // Event handler added
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(304, 241);
+            AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            ClientSize = new System.Drawing.Size(569, 434);
             Controls.Add(buttonSelectAll);
             Controls.Add(buttonDelete);
             Controls.Add(buttonMarkAs);
@@ -137,6 +146,7 @@ namespace TODOWinApp
             contextMenuMarkAs.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
+
         }
 
         #endregion
