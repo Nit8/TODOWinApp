@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Net.Http;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
+using System.IO;
 
 namespace TODOWinApp
 {
@@ -11,6 +12,7 @@ namespace TODOWinApp
     {
         private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
         private MaterialSkin.MaterialSkinManager materialSkinManager;
+        private readonly string todoFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TodoList.txt");
         public Form1()
         {
             // Initialize the MaterialSkinManager and set the form's skin properties
@@ -141,8 +143,35 @@ namespace TODOWinApp
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveTodoList();
             Application.Exit();
         }
+        private void LoadTodoList()
+        {
+            if (File.Exists(todoFilePath))
+            {
+                string[] tasks = File.ReadAllLines(todoFilePath);
+                listBoxTasks.Items.AddRange(tasks);
+            }
+        }
+
+        private void SaveTodoList()
+        {
+            using (StreamWriter writer = new StreamWriter(todoFilePath))
+            {
+                foreach (var item in listBoxTasks.Items)
+                {
+                    writer.WriteLine(item.ToString());
+                }
+            }
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            SaveTodoList();
+        }
+
+
 
         private async void CheckForUpdates()
         {

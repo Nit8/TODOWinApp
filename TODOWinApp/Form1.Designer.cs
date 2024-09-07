@@ -74,6 +74,9 @@ namespace TODOWinApp
             this.menuStrip.SuspendLayout();
             this.contextMenuMarkAs.SuspendLayout();
             this.SuspendLayout();
+            LoadTodoList();
+            this.FormClosing += new FormClosingEventHandler(Form1_FormClosing);
+
             // 
             // menuStrip
             // 
