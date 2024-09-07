@@ -1,16 +1,27 @@
-﻿using System;
+﻿using MaterialSkin;
+using System;
 using System.Drawing;
 using System.Net.Http;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 
 namespace TODOWinApp
 {
-    public partial class Form1 : Form
+    public partial class Form1 : MaterialForm
     {
         private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
+        private MaterialSkin.MaterialSkinManager materialSkinManager;
         public Form1()
         {
+            // Initialize the MaterialSkinManager and set the form's skin properties
+            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
+            materialSkinManager.AddFormToManage(this);
+            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT; // or .DARK
+            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(
+                MaterialSkin.Primary.Blue600, MaterialSkin.Primary.Blue700,
+                MaterialSkin.Primary.Blue200, MaterialSkin.Accent.LightBlue200,
+                MaterialSkin.TextShade.WHITE);
+
             CheckForUpdates();
             InitializeComponent();
         }
@@ -30,12 +41,15 @@ namespace TODOWinApp
 
         private void buttonMarkAs_Click(object sender, EventArgs e)
         {
+            // Check if any task is selected in the ListBox
             if (listBoxTasks.SelectedIndices.Count > 0)
             {
+                // Show context menu for marking tasks as done/undone
                 contextMenuMarkAs.Show(buttonMarkAs, new Point(0, buttonMarkAs.Height));
             }
             else
             {
+                // Display a warning message if no task is selected
                 MessageBox.Show("Please select at least one task to mark.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
