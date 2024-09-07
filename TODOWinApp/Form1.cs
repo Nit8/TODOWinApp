@@ -11,21 +11,21 @@ namespace TODOWinApp
     public partial class Form1 : MaterialForm
     {
         private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
-        private MaterialSkin.MaterialSkinManager materialSkinManager;
+        private MaterialSkinManager materialSkinManager;
         private readonly string todoFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TodoList.txt");
+
         public Form1()
         {
-            // Initialize the MaterialSkinManager and set the form's skin properties
-            materialSkinManager = MaterialSkin.MaterialSkinManager.Instance;
+            materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
-            materialSkinManager.Theme = MaterialSkin.MaterialSkinManager.Themes.LIGHT; // or .DARK
-            materialSkinManager.ColorScheme = new MaterialSkin.ColorScheme(
-                MaterialSkin.Primary.Blue600, MaterialSkin.Primary.Blue700,
-                MaterialSkin.Primary.Blue200, MaterialSkin.Accent.LightBlue200,
-                MaterialSkin.TextShade.WHITE);
+            materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT; // or .DARK
+            materialSkinManager.ColorScheme = new ColorScheme(
+                Primary.Blue600, Primary.Blue700,
+                Primary.Blue200, Accent.LightBlue200,
+                TextShade.WHITE);
 
-            CheckForUpdates();
             InitializeComponent();
+            CheckForUpdates();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -43,15 +43,12 @@ namespace TODOWinApp
 
         private void buttonMarkAs_Click(object sender, EventArgs e)
         {
-            // Check if any task is selected in the ListBox
             if (listBoxTasks.SelectedIndices.Count > 0)
             {
-                // Show context menu for marking tasks as done/undone
                 contextMenuMarkAs.Show(buttonMarkAs, new Point(0, buttonMarkAs.Height));
             }
             else
             {
-                // Display a warning message if no task is selected
                 MessageBox.Show("Please select at least one task to mark.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
@@ -73,10 +70,7 @@ namespace TODOWinApp
             {
                 int index = selectedIndices[i];
                 string task = listBoxTasks.Items[index].ToString();
-
-                // Remove any existing status
                 task = task.Replace("(Done)", "").Replace("(Undone)", "").Trim();
-
                 listBoxTasks.Items[index] = $"{task} {status}";
             }
         }
@@ -103,49 +97,54 @@ namespace TODOWinApp
                 listBoxTasks.SetSelected(i, true);
             }
         }
+
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Code to create a new task or clear the current list
+            listBoxTasks.Items.Clear();
         }
 
         private void openToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Code to open a file dialog and load tasks
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    listBoxTasks.Items.Clear();
+                    string[] tasks = File.ReadAllLines(openFileDialog.FileName);
+                    listBoxTasks.Items.AddRange(tasks);
+                }
+            }
         }
+
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            // Open the SaveFileDialog to allow the user to choose where to save the file
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
-                    // Create a StreamWriter to write to the selected file
-                    using (var writer = new System.IO.StreamWriter(saveFileDialog.FileName))
+                    using (var writer = new StreamWriter(saveFileDialog.FileName))
                     {
-                        // Iterate through the items in the ListBox and write each item to the file
                         foreach (var item in listBoxTasks.Items)
                         {
                             writer.WriteLine(item.ToString());
                         }
                     }
-
-                    // Notify the user that the file was saved successfully
                     MessageBox.Show("TODO list saved successfully.", "Save Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {
-                    // Handle any exceptions that occur during the file write operation
                     MessageBox.Show($"An error occurred while saving the TODO list: {ex.Message}", "Save Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
-
 
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveTodoList();
             Application.Exit();
         }
+
         private void LoadTodoList()
         {
             if (File.Exists(todoFilePath))
@@ -171,8 +170,6 @@ namespace TODOWinApp
             SaveTodoList();
         }
 
-
-
         private async void CheckForUpdates()
         {
             try
@@ -192,7 +189,7 @@ namespace TODOWinApp
 
                         if (result == DialogResult.Yes)
                         {
-                            System.Diagnostics.Process.Start("https://drive.google.com/drive/folders/1-P9d9NE6xQNCizT-WmaMRVkyupDyNEwf?usp=sharing"); // Replace with your download link
+                            System.Diagnostics.Process.Start("https://drive.google.com/drive/folders/1-P9d9NE6xQNCizT-WmaMRVkyupDyNEwf?usp=sharing");
                         }
                     }
                 }
@@ -202,17 +199,14 @@ namespace TODOWinApp
                 MessageBox.Show("Failed to check for updates. " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private bool IsNewVersionAvailable(string currentVersion, string latestVersion)
         {
-            // Remove extra whitespace and newline characters
             latestVersion = latestVersion.Trim();
-
-            // Compare the versions
             Version localVersion = new Version(currentVersion);
             Version onlineVersion = new Version(latestVersion);
 
             return onlineVersion > localVersion;
         }
-
     }
 }
