@@ -5,12 +5,15 @@ using System.Net.Http;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using System.IO;
+using Microsoft.Extensions.Configuration;
 
 namespace TODOWinApp
 {
     public partial class Form1 : MaterialForm
     {
-        private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
+        //private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
+        private readonly string versionUrl;
+        
         private MaterialSkinManager materialSkinManager;
         private readonly string todoFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TodoList.txt");
 
@@ -24,8 +27,14 @@ namespace TODOWinApp
                 Primary.Blue200, Accent.LightBlue200,
                 TextShade.WHITE);
 
+            var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .Build();
+
+            versionUrl = configuration["VersionUrl"];
+
             InitializeComponent();
-            CheckForUpdates();
+                CheckForUpdates();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)

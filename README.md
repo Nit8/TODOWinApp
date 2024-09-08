@@ -13,7 +13,7 @@ This Windows Forms application provides a simple and intuitive interface for man
 ## Installation
 1. Clone the repository:
    ```
-   git clone https://github.com/yourusername/todo-list-app.git
+   git clone https://github.com/Nit8/TODOWinApp.git
    ```
 2. Open the solution file (`TODOWinApp.sln`) in Visual Studio.
 3. Restore NuGet packages if necessary.
