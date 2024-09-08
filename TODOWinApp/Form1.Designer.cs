@@ -37,6 +37,8 @@ namespace TODOWinApp
         private System.Windows.Forms.ToolStripMenuItem doneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoneToolStripMenuItem;
         private MaterialSkin.Controls.MaterialButton buttonSelectAll;
+        private ToolStripMenuItem helpToolStripMenuItem;
+        private ToolStripMenuItem aboutToolStripMenuItem;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -71,6 +73,8 @@ namespace TODOWinApp
             this.undoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.buttonSelectAll = new MaterialSkin.Controls.MaterialButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.contextMenuMarkAs.SuspendLayout();
             this.SuspendLayout();
@@ -82,12 +86,29 @@ namespace TODOWinApp
             // 
             this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem});
+            this.fileToolStripMenuItem,this.helpToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(3, 64);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Size = new System.Drawing.Size(759, 28);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
+
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Text = "Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+
             // 
             // fileToolStripMenuItem
             // 

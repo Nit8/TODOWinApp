@@ -217,5 +217,9 @@ namespace TODOWinApp
 
             return onlineVersion > localVersion;
         }
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show($"Application Version: {Application.ProductVersion}", "About", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
