@@ -37,8 +37,10 @@ namespace TODOWinApp
         private System.Windows.Forms.ToolStripMenuItem doneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem undoneToolStripMenuItem;
         private MaterialSkin.Controls.MaterialButton buttonSelectAll;
+        private MaterialSkin.Controls.MaterialButton buttonCheckForUpdates;
         private ToolStripMenuItem helpToolStripMenuItem;
-        private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem versionToolStripMenuItem;
+        private ToolStripMenuItem checkForUpdatesToolStripMenuItem;
 
         /// <summary>
         ///  Clean up any resources being used.
@@ -74,7 +76,29 @@ namespace TODOWinApp
             this.buttonSelectAll = new MaterialSkin.Controls.MaterialButton();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.versionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkForUpdatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            //this.buttonCheckForUpdates = new MaterialSkin.Controls.MaterialButton();
+            //this.buttonCheckForUpdates.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            //this.buttonCheckForUpdates.Density = MaterialSkin.Controls.MaterialButton.MaterialButtonDensity.Default;
+            //this.buttonCheckForUpdates.Depth = 0;
+            //this.buttonCheckForUpdates.HighEmphasis = true;
+            //this.buttonCheckForUpdates.Icon = null;
+            //this.buttonCheckForUpdates.Location = new System.Drawing.Point(120, 150); // Adjust position as needed
+            //this.buttonCheckForUpdates.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            //this.buttonCheckForUpdates.MouseState = MaterialSkin.MouseState.HOVER;
+            //this.buttonCheckForUpdates.Name = "buttonCheckForUpdates";
+            //this.buttonCheckForUpdates.NoAccentTextColor = System.Drawing.Color.Empty;
+            //this.buttonCheckForUpdates.Size = new System.Drawing.Size(150, 36);
+            //this.buttonCheckForUpdates.TabIndex = 4;
+            //this.buttonCheckForUpdates.Text = "Check for Updates";
+            //this.buttonCheckForUpdates.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Contained;
+            //this.buttonCheckForUpdates.UseAccentColor = false;
+            //this.buttonCheckForUpdates.UseVisualStyleBackColor = true;
+            //this.buttonCheckForUpdates.Click += new System.EventHandler(this.buttonCheckForUpdates_Click);
+
+            // Add button to form controls
+            this.Controls.Add(this.buttonCheckForUpdates);
             this.menuStrip.SuspendLayout();
             this.contextMenuMarkAs.SuspendLayout();
             this.SuspendLayout();
@@ -97,18 +121,24 @@ namespace TODOWinApp
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
+            this.versionToolStripMenuItem,this.checkForUpdatesToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "Help";
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
-
+            this.versionToolStripMenuItem.Name = "versionToolStripMenuItem";
+            this.versionToolStripMenuItem.Size = new System.Drawing.Size(135, 26);
+            this.versionToolStripMenuItem.Text = "Version";
+            this.versionToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // checkForUpdatesToolStripMenuItem
+            // 
+            this.checkForUpdatesToolStripMenuItem.Name = "checkForUpdatesToolStripMenuItem";
+            this.checkForUpdatesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.checkForUpdatesToolStripMenuItem.Text = "Check for Updates";
+            this.checkForUpdatesToolStripMenuItem.Click += new System.EventHandler(this.buttonCheckForUpdates_Click);
             // 
             // fileToolStripMenuItem
             // 
