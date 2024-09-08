@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using MaterialSkin.Controls;
 using System.IO;
 using Microsoft.Extensions.Configuration;
+using System.Threading.Tasks;
 
 namespace TODOWinApp
 {
@@ -13,6 +14,7 @@ namespace TODOWinApp
     {
         //private const string versionUrl = "https://drive.google.com/uc?export=download&id=1-OuXxtetNfmtGzKSpKmx--k4X4nx8rYj";
         private readonly string versionUrl;
+        private readonly string setupUrl;
         
         private MaterialSkinManager materialSkinManager;
         private readonly string todoFilePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "TodoList.txt");
@@ -32,9 +34,10 @@ namespace TODOWinApp
             .Build();
 
             versionUrl = configuration["VersionUrl"];
+            setupUrl = configuration["SetupUrl"];
 
             InitializeComponent();
-                CheckForUpdates();
+            _ = CheckForUpdates(false);
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -178,8 +181,13 @@ namespace TODOWinApp
         {
             SaveTodoList();
         }
+        private async void buttonCheckForUpdates_Click(object sender, EventArgs e)
+        {
+            await CheckForUpdates(true);
+        }
 
-        private async void CheckForUpdates()
+
+        private async Task CheckForUpdates(bool isCalledFromUpdateCheck = false )
         {
             try
             {
@@ -198,8 +206,17 @@ namespace TODOWinApp
 
                         if (result == DialogResult.Yes)
                         {
-                            System.Diagnostics.Process.Start("https://drive.google.com/drive/folders/1-P9d9NE6xQNCizT-WmaMRVkyupDyNEwf?usp=sharing");
+                            System.Diagnostics.Process.Start(setupUrl);
                         }
+                    }
+                    else if (isCalledFromUpdateCheck)
+                    {
+                       
+                        DialogResult results = MessageBox.Show(
+                            "Version already upto date!!!", "Upto Date",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        
                     }
                 }
             }
